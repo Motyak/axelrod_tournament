@@ -1,13 +1,14 @@
-On veut pouvoir créer un tournoi avec 3 joueurs: 
--Un joueur qui coopére tout le temps
--Un joueur qui trahit tout le temps
--Et un joueur Tit of tat
+1) Coder un duel:
+Fonction qui prend en paramètre deux coups (int/enum)
+ainsi qu'une matrice des gains sous la forme d'un unsigned char
+(4 premiers bits pour le coup du joueur 1 et les 4 derniers pour
+le joueur 2). La fonction retourne une paire de {int/enum, float},
+une structure représentant pour chaque joueur le coup adverse ainsi
+que son propre score issue du duel.
+La fonction doit pouvoir marcher avec en exemple un duel de
+pierre-feuille-ciseaux (3 coups possibles) et un dilemne du prisonnier
+(2 coups possibles).
 
-Un tournoi c'est un ensemble de joueurs (avec chacun sa propre stratégie de jeu)
-ainsi qu'un ensemble de régles (matrice des gains, nombre de tours, etc...)
-
-
--Revenir sur la partie conception, faire des diagrammes UML (classes et séquence)
--Faire l'implémentation de 'Tournoi::jouer' (faire l'algo)
--refaire le makefile avec les dépendances
-    de recettes et le répertoire 'obj'.
+2) Coder les stratégies du dilemne du prisonnier itéré:
+Fonctions qui prennent en entrée un historique de coups (int/enum)
+et retourne une probabilité de coopérer (entre 0 et 1).
