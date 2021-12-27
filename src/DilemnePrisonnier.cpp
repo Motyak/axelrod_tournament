@@ -14,3 +14,20 @@ std::pair<Resultat,Resultat> DilemnePrisonnier::duel(int coupJ1, int coupJ2)
 {
     return ::duel(coupJ1, coupJ2, DilemnePrisonnier::matriceGains);
 }
+
+float DilemnePrisonnierItere::coopereToujours(const std::vector<DilemnePrisonnier::Coup>& historique)
+{
+    return 1.f;
+}
+
+float DilemnePrisonnierItere::trahitToujours(const std::vector<DilemnePrisonnier::Coup>& historique)
+{
+    return 0.f;
+}
+
+float DilemnePrisonnierItere::oeilPourOeil(const std::vector<DilemnePrisonnier::Coup>& historique)
+{
+    if(historique.empty())
+        return 1.f;
+    return (historique.back() == DilemnePrisonnier::Coup::COOPERE ? 1.f : 0.f);
+}

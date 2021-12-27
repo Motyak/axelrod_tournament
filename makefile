@@ -4,9 +4,9 @@ SRC=src/duel.cpp src/PierreFeuilleCiseaux.cpp src/DilemnePrisonnier.cpp src/main
 OBJ=obj/duel.o obj/PierreFeuilleCiseaux.o obj/DilemnePrisonnier.o obj/main.o
 DIRS=obj bin
 
-all: bin/duel
+all: bin/axelrod
 
-bin/duel: $(OBJ)
+bin/axelrod: $(OBJ)
 	$(CC) -o $@ $^
 
 obj/main.o: src/main.cpp

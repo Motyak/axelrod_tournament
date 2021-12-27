@@ -9,6 +9,12 @@ La fonction doit pouvoir marcher avec en exemple un duel de
 pierre-feuille-ciseaux (3 coups possibles) et un dilemne du prisonnier
 (2 coups possibles).
 
+(
+    Pouvoir lire une matrice des gains à partir d'un fichier
+    (on mettrait juste le nom du fichier dans lequel lire la matrice
+    format texte)
+)
+
 2) Coder les stratégies du dilemne du prisonnier itéré:
 Fonctions qui prennent en entrée un historique de coups (int/enum)
 et retourne une probabilité de coopérer (entre 0 et 1).

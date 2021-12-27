@@ -5,19 +5,17 @@
 
 using namespace PierreFeuilleCiseaux;
 using namespace DilemnePrisonnier;
+using namespace DilemnePrisonnierItere;
 
 int main()
 {
-    {
-        std::cout << "Ciseaux VS Pierre" << std::endl;
-        auto res = PierreFeuilleCiseaux::duel(CISEAUX, PIERRE);
-        afficher(res);
-        std::cout << "-----------------" << std::endl << std::endl;
-    }
+    /* Création de l'historique */
+    std::vector<DilemnePrisonnier::Coup> historique;
+    historique.push_back(COOPERE);
+    // historique.push_back(TRAHIT);
 
-    {
-        std::cout << "Trahit VS Coopere" << std::endl;
-        auto res = DilemnePrisonnier::duel(TRAHIT, COOPERE);
-        afficher(res);
-    }
+    std::cout << coopereToujours(historique) << std::endl;
+    std::cout << trahitToujours(historique) << std::endl;
+    std::cout << oeilPourOeil(historique) << std::endl;
+    
 }
