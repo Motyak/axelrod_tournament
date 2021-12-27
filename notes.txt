@@ -1,0 +1,13 @@
+On veut pouvoir créer un tournoi avec 3 joueurs: 
+-Un joueur qui coopére tout le temps
+-Un joueur qui trahit tout le temps
+-Et un joueur Tit of tat
+
+Un tournoi c'est un ensemble de joueurs (avec chacun sa propre stratégie de jeu)
+ainsi qu'un ensemble de régles (matrice des gains, nombre de tours, etc...)
+
+
+-Revenir sur la partie conception, faire des diagrammes UML (classes et séquence)
+-Faire l'implémentation de 'Tournoi::jouer' (faire l'algo)
+-refaire le makefile avec les dépendances
+    de recettes et le répertoire 'obj'.
