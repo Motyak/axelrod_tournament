@@ -1,18 +1,31 @@
 #include <DilemnePrisonnier.h>
 
-namespace DilemnePrisonnier
-{
-    const MatriceGains matriceGains = {
-        { 0b00000000, {3.f, 3.f} }, // COOPERE_COOPERE
-        { 0b00000001, {0.f, 5.f} }, // COOPERE_TRAHIT
-        { 0b00010000, {5.f, 0.f} }, // TRAHIT_COOPERE
-        { 0b00010001, {1.f, 1.f} }  // TRAHIT_TRAHIT
-    };
-};
+#include <aleat.h>
 
-std::pair<Resultat,Resultat> DilemnePrisonnier::duel(int coupJ1, int coupJ2)
+Scores DilemnePrisonnier::duel(int coupJ1, int coupJ2)
 {
     return ::duel(coupJ1, coupJ2, DilemnePrisonnier::matriceGains);
+}
+
+DilemnePrisonnier::Coup DilemnePrisonnierItere::faireJouer(const DilemnePrisonnierItere::Joueur& joueur)
+{
+    float probaCoop = joueur.strategie(joueur.historique);
+    return (DilemnePrisonnier::Coup)!aleat(probaCoop);
+}
+
+void DilemnePrisonnierItere::faireAffronter(DilemnePrisonnierItere::Joueur& j1, DilemnePrisonnierItere::Joueur& j2)
+{
+    DilemnePrisonnier::Coup coup_j1 = DilemnePrisonnierItere::faireJouer(j1);
+    DilemnePrisonnier::Coup coup_j2 = DilemnePrisonnierItere::faireJouer(j2);
+    Scores scores = duel(coup_j1, coup_j2, DilemnePrisonnier::matriceGains);
+
+    /* on change l'état de joueur1 */
+    j1.score += scores.first;
+    j1.historique.push_back(coup_j2);
+
+    /* on change l'état de joueur2 */
+    j2.score += scores.second;
+    j2.historique.push_back(coup_j1);
 }
 
 float DilemnePrisonnierItere::coopereToujours(const std::vector<DilemnePrisonnier::Coup>& historique)
@@ -30,4 +43,9 @@ float DilemnePrisonnierItere::oeilPourOeil(const std::vector<DilemnePrisonnier::
     if(historique.empty())
         return 1.f;
     return (historique.back() == DilemnePrisonnier::Coup::COOPERE ? 1.f : 0.f);
+}
+
+float DilemnePrisonnierItere::aleatoire(const std::vector<DilemnePrisonnier::Coup>& historique)
+{
+    return 0.5f;
 }

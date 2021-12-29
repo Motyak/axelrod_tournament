@@ -2,27 +2,21 @@
 
 #include <iostream>
 
-std::pair<Resultat,Resultat> duel(int coupJ1, int coupJ2, MatriceGains matriceGains)
+Scores duel(int coupJ1, int coupJ2, const MatriceGains& matriceGains)
 {
     // on combine les coups pour former la clé de la matrice des gains
-    Scores scores = matriceGains[(coupJ1<<4) + coupJ2];
-
-    // on construit les résultats de chaque joueur
-    Resultat res_J1 = {coupJ2, scores.first};
-    Resultat res_J2 = {coupJ1, scores.second};
-
-    return {res_J1, res_J2};
+    return matriceGains.at((coupJ1<<4) + coupJ2);
 }
 
-void afficher(std::pair<Resultat,Resultat> res)
+void afficher(const Scores& scores)
 {
-    std::cout << "J1: " << res.first.score << std::endl;
-    std::cout << "J2: " << res.second.score << std::endl;
-    if(res.first.score == res.second.score)
+    std::cout << "J1: " << scores.first << std::endl;
+    std::cout << "J2: " << scores.second << std::endl;
+    if(scores.first == scores.second)
         std::cout << "Egalité" << std::endl;
     else
     {
-        if(res.first.score > res.second.score)
+        if(scores.first > scores.second)
             std::cout << "J1 ";
         else
             std::cout << "J2 ";

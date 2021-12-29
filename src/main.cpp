@@ -1,21 +1,18 @@
-#include <PierreFeuilleCiseaux.h>
 #include <DilemnePrisonnier.h>
 
 #include <iostream>
 
-using namespace PierreFeuilleCiseaux;
-using namespace DilemnePrisonnier;
 using namespace DilemnePrisonnierItere;
 
 int main()
 {
-    /* Création de l'historique */
-    std::vector<DilemnePrisonnier::Coup> historique;
-    historique.push_back(COOPERE);
-    // historique.push_back(TRAHIT);
+    /* Faire rivaliser les stratégies 'aléatoire' et 'oeil pour oeil' sur 10 parties */
+    const int NB_DE_PARTIES = 10;
 
-    std::cout << coopereToujours(historique) << std::endl;
-    std::cout << trahitToujours(historique) << std::endl;
-    std::cout << oeilPourOeil(historique) << std::endl;
-    
+    Joueur j1{&aleatoire}, j2{&oeilPourOeil};
+
+    for(int i = 1; i <= NB_DE_PARTIES; ++i)
+        faireAffronter(j1, j2);
+
+    afficher({j1.score, j2.score});
 }
