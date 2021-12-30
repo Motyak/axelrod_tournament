@@ -3,4 +3,6 @@
 
 bool aleat(float probaTrue);
 
+int equiAleat(int from, int to);
+
 #endif

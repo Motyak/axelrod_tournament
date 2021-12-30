@@ -3,6 +3,8 @@
 
 #include "duel.h"
 
+#include <vector>
+
 namespace PierreFeuilleCiseaux
 {
     enum Coup { PIERRE, FEUILLE, CISEAUX };
@@ -20,6 +22,22 @@ namespace PierreFeuilleCiseaux
         { 0b00100001, {1.f, 0.f} }, // CISEAUX_FEUILLE
         { 0b00100010, {0.f, 0.f} }  // CISEAUX_CISEAUX
     };
+};
+
+namespace PierreFeuilleCiseauxItere
+{
+    struct Joueur
+    {
+        PierreFeuilleCiseaux::Coup (*strategie)(const std::vector<PierreFeuilleCiseaux::Coup>&);
+        float score = 0.f;
+        std::vector<PierreFeuilleCiseaux::Coup> historique = std::vector<PierreFeuilleCiseaux::Coup>();
+    };
+
+    void faireAffronter(Joueur&, Joueur&);
+
+    /* strategies */
+    PierreFeuilleCiseaux::Coup aleatoire(const std::vector<PierreFeuilleCiseaux::Coup>& historique);
+    PierreFeuilleCiseaux::Coup repeteCoupAdverse(const std::vector<PierreFeuilleCiseaux::Coup>& historique);
 };
 
 #endif
