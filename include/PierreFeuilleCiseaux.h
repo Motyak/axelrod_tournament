@@ -7,7 +7,7 @@ namespace PierreFeuilleCiseaux
 {
     enum Coup { PIERRE, FEUILLE, CISEAUX };
 
-    Scores duel(int coupJ1, int coupJ2);
+    Scores duel(Coup coupJ1, Coup coupJ2);
 
     const MatriceGains matriceGains = {
         { 0b00000000, {0.f, 0.f} }, // PIERRE_PIERRE

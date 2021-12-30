@@ -9,7 +9,7 @@ namespace DilemnePrisonnier
 {
     enum Coup { COOPERE, TRAHIT };
 
-    Scores duel(int coupJ1, int coupJ2);
+    Scores duel(Coup coupJ1, Coup coupJ2);
 
     const MatriceGains matriceGains = {
         { 0b00000000, {3.f, 3.f} }, // COOPERE_COOPERE

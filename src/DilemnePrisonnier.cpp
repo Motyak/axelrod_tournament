@@ -2,7 +2,7 @@
 
 #include <aleat.h>
 
-Scores DilemnePrisonnier::duel(int coupJ1, int coupJ2)
+Scores DilemnePrisonnier::duel(DilemnePrisonnier::Coup coupJ1, DilemnePrisonnier::Coup coupJ2)
 {
     return ::duel(coupJ1, coupJ2, DilemnePrisonnier::matriceGains);
 }
@@ -19,11 +19,11 @@ void DilemnePrisonnierItere::faireAffronter(DilemnePrisonnierItere::Joueur& j1, 
     DilemnePrisonnier::Coup coup_j2 = DilemnePrisonnierItere::faireJouer(j2);
     Scores scores = duel(coup_j1, coup_j2, DilemnePrisonnier::matriceGains);
 
-    /* on change l'état de joueur1 */
+    /* on change l'état du joueur1 */
     j1.score += scores.first;
     j1.historique.push_back(coup_j2);
 
-    /* on change l'état de joueur2 */
+    /* on change l'état du joueur2 */
     j2.score += scores.second;
     j2.historique.push_back(coup_j1);
 }
