@@ -11,7 +11,7 @@ void PierreFeuilleCiseauxItere::faireAffronter(PierreFeuilleCiseauxItere::Joueur
 {
     PierreFeuilleCiseaux::Coup coup_j1 = j1.strategie(j1.historique);
     PierreFeuilleCiseaux::Coup coup_j2 = j2.strategie(j2.historique);
-    Scores scores = duel(coup_j1, coup_j2, PierreFeuilleCiseaux::matriceGains);
+    Scores scores = PierreFeuilleCiseaux::duel(coup_j1, coup_j2);
 
     /* on change l'état du joueur1 */
     j1.score += scores.first;
@@ -30,6 +30,6 @@ PierreFeuilleCiseaux::Coup PierreFeuilleCiseauxItere::aleatoire(const std::vecto
 PierreFeuilleCiseaux::Coup PierreFeuilleCiseauxItere::repeteCoupAdverse(const std::vector<PierreFeuilleCiseaux::Coup>& historique)
 {
     if(historique.empty())
-        return aleatoire(historique);
+        return PierreFeuilleCiseauxItere::aleatoire(historique);
     return historique.back();
 }

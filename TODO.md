@@ -2,7 +2,7 @@
 
 - [x] Coder un duel:
 Fonction qui prend en paramètre deux coups (int/enum)
-ainsi qu'une matrice des gains sous la forme d'un unsigned char
+ainsi qu'une matrice des gains sous la forme d'une map unsigned char -> Scores
 (4 premiers bits pour le coup du joueur 1 et les 4 derniers pour
 le joueur 2). La fonction retourne une paire de float représentant
 les scores du joueur 1 et 2.

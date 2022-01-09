@@ -17,7 +17,7 @@ void DilemnePrisonnierItere::faireAffronter(DilemnePrisonnierItere::Joueur& j1, 
 {
     DilemnePrisonnier::Coup coup_j1 = DilemnePrisonnierItere::faireJouer(j1);
     DilemnePrisonnier::Coup coup_j2 = DilemnePrisonnierItere::faireJouer(j2);
-    Scores scores = duel(coup_j1, coup_j2, DilemnePrisonnier::matriceGains);
+    Scores scores = DilemnePrisonnier::duel(coup_j1, coup_j2);
 
     /* on change l'état du joueur1 */
     j1.score += scores.first;

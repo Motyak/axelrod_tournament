@@ -12,7 +12,7 @@ $(BIN): $(OBJ)
 obj/main.o: src/main.cpp include/DilemnePrisonnier.h include/PierreFeuilleCiseaux.h include/duel.h include/aleat.h
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-obj/PierreFeuilleCiseaux.o: src/PierreFeuilleCiseaux.cpp include/PierreFeuilleCiseaux.h include/duel.h
+obj/PierreFeuilleCiseaux.o: src/PierreFeuilleCiseaux.cpp include/PierreFeuilleCiseaux.h include/duel.h include/aleat.h
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 obj/DilemnePrisonnier.o: src/DilemnePrisonnier.cpp include/DilemnePrisonnier.h include/duel.h include/aleat.h

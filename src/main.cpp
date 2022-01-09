@@ -20,9 +20,9 @@ int main()
         afficher({j1.score, j2.score});
     }
 
-    std::cout << std::endl; //delim
+    std::cout << '\n'; //delim
 
-    /* Faire rivaliser les stratégies 'aléatoire' et 'répéte coup adverse' 
+    /* Faire rivaliser les stratégies 'aléatoire' et 'répéte coup adverse' */
     /* sur 10 parties de pierre feuille ciseaux itéré */
     {
         using namespace PierreFeuilleCiseauxItere;
