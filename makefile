@@ -30,5 +30,7 @@ clean:
 mrproper:
 	rm -rf obj bin
 
+.PHONY: clean mrproper
+
 # will create all necessary directories after the Makefile is parsed
 $(shell mkdir -p $(DIRS))
