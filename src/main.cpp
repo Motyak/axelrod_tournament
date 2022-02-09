@@ -21,7 +21,7 @@ int main()
 
         jouer(tournoi, NB_DE_ROUNDS);
 
-        afficherClassement(tournoi.classement);
+        afficher(tournoi.classement);
     }
 
     std::cout << '\n'; //delim

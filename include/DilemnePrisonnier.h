@@ -40,13 +40,19 @@ namespace DilemnePrisonnierItere
     struct Tournoi
     {
         std::vector<Joueur> joueurs;
-        // Avec noms des joueurs
-        std::vector<std::string> classement;
+
+        struct EntreeClassement
+        {
+            std::string nomJoueur;
+            float scoreJoueur;   
+        };
+        using Classement = std::vector<EntreeClassement>;
+        Classement classement;
     };
-    Tournoi creerTournoi(std::map<std::string,Strategie> joueurs);
-    void jouer(Tournoi&, int nbDeRounds);
+    Tournoi creerTournoi(const std::map<std::string,Strategie>& joueurs);
+    void jouer(Tournoi&, int nbDeRounds=1);
     static void faireClassement(Tournoi&);
-    void afficherClassement(const std::vector<std::string>&);
+    void afficher(const Tournoi::Classement&);
 
     /* strategies */
     float coopereToujours(const Historique&);

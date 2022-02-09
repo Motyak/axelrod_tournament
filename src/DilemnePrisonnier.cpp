@@ -30,7 +30,7 @@ void DilemnePrisonnierItere::faireAffronter(DilemnePrisonnierItere::Joueur& j1, 
     j2.historique.push_back(coup_j1);
 }
 
-DilemnePrisonnierItere::Tournoi DilemnePrisonnierItere::creerTournoi(std::map<std::string,Strategie> joueurs)
+DilemnePrisonnierItere::Tournoi DilemnePrisonnierItere::creerTournoi(const std::map<std::string,Strategie>& joueurs)
 {
     Tournoi tournoi;
 
@@ -53,7 +53,7 @@ static void DilemnePrisonnierItere::faireClassement(Tournoi& tournoi)
     std::sort(joueurs.begin(), joueurs.end(), comparateur);
     
     for(const auto& j: joueurs)
-        tournoi.classement.push_back(j.NOM);
+        tournoi.classement.push_back(Tournoi::EntreeClassement{j.NOM, j.score});
 }
 
 void DilemnePrisonnierItere::jouer(Tournoi& tournoi, int nbDeRounds)
@@ -69,10 +69,15 @@ void DilemnePrisonnierItere::jouer(Tournoi& tournoi, int nbDeRounds)
     faireClassement(tournoi);
 }
 
-void DilemnePrisonnierItere::afficherClassement(const std::vector<std::string>& classement)
+void DilemnePrisonnierItere::afficher(const Tournoi::Classement& classement)
 {
-    for(int i = 0; i < classement.size(); ++i)
-        std::cout << (i + 1) << "° " + classement.at(i) << std::endl;
+    const int nbDeJoueurs = classement.size();
+
+    for(int i = 0; i < nbDeJoueurs; ++i)
+    {
+        auto& entree = classement.at(i);
+        std::cout << (i + 1) << "° " + entree.nomJoueur << ": " << entree.scoreJoueur << std::endl;
+    }
 }
 
 float DilemnePrisonnierItere::coopereToujours(const Historique& historique)
