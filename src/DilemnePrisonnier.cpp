@@ -1,6 +1,8 @@
 #include <DilemnePrisonnier.h>
 
 #include <aleat.h>
+#include <algorithm>
+#include <iostream>
 
 Scores DilemnePrisonnier::duel(DilemnePrisonnier::Coup coupJ1, DilemnePrisonnier::Coup coupJ2)
 {
@@ -28,24 +30,69 @@ void DilemnePrisonnierItere::faireAffronter(DilemnePrisonnierItere::Joueur& j1, 
     j2.historique.push_back(coup_j1);
 }
 
-float DilemnePrisonnierItere::coopereToujours(const std::vector<DilemnePrisonnier::Coup>& historique)
+DilemnePrisonnierItere::Tournoi DilemnePrisonnierItere::creerTournoi(std::map<std::string,Strategie> joueurs)
+{
+    Tournoi tournoi;
+
+    for(const auto& j: joueurs)
+    {
+        auto& nom = j.first;
+        auto& strategie = j.second;
+        tournoi.joueurs.push_back(Joueur{strategie, nom});
+    }
+
+    return tournoi;
+}
+
+static void DilemnePrisonnierItere::faireClassement(Tournoi& tournoi)
+{
+    // on fait une copie des joueurs
+    std::vector<Joueur> joueurs = tournoi.joueurs;
+    auto comparateur = [](const Joueur& j1, const Joueur& j2){ return j1.score > j2.score; };
+    
+    std::sort(joueurs.begin(), joueurs.end(), comparateur);
+    
+    for(const auto& j: joueurs)
+        tournoi.classement.push_back(j.NOM);
+}
+
+void DilemnePrisonnierItere::jouer(Tournoi& tournoi, int nbDeRounds)
+{
+    auto premierJoueur = tournoi.joueurs.begin();
+    auto dernierJoueur = tournoi.joueurs.end();
+
+    for(int i = 1; i <= nbDeRounds; ++i)
+        for(auto j1 = premierJoueur; dernierJoueur != j1; ++j1)
+            for(auto j2 = j1; dernierJoueur != ++j2;)
+                faireAffronter(*j1, *j2);
+
+    faireClassement(tournoi);
+}
+
+void DilemnePrisonnierItere::afficherClassement(const std::vector<std::string>& classement)
+{
+    for(int i = 0; i < classement.size(); ++i)
+        std::cout << (i + 1) << "° " + classement.at(i) << std::endl;
+}
+
+float DilemnePrisonnierItere::coopereToujours(const Historique& historique)
 {
     return 1.f;
 }
 
-float DilemnePrisonnierItere::trahitToujours(const std::vector<DilemnePrisonnier::Coup>& historique)
+float DilemnePrisonnierItere::trahitToujours(const Historique& historique)
 {
     return 0.f;
 }
 
-float DilemnePrisonnierItere::oeilPourOeil(const std::vector<DilemnePrisonnier::Coup>& historique)
+float DilemnePrisonnierItere::oeilPourOeil(const Historique& historique)
 {
     if(historique.empty())
         return 1.f;
     return (historique.back() == DilemnePrisonnier::Coup::COOPERE ? 1.f : 0.f);
 }
 
-float DilemnePrisonnierItere::aleatoire(const std::vector<DilemnePrisonnier::Coup>& historique)
+float DilemnePrisonnierItere::aleatoire(const Historique& historique)
 {
     return 0.5f;
 }

@@ -5,6 +5,27 @@
 
 int main()
 {
+    /* Faire rivaliser toutes les stratégies du dilemne du prisonnier itéré */
+    /* dans un tournoi en 3 rounds */
+    {
+        using namespace DilemnePrisonnierItere;
+
+        const int NB_DE_ROUNDS = 3;
+
+        Tournoi tournoi = creerTournoi({
+            {"ALL_C", &coopereToujours},
+            {"ALL_D", &trahitToujours},
+            {"E4E", &oeilPourOeil},
+            {"RAND", &aleatoire}
+        });
+
+        jouer(tournoi, NB_DE_ROUNDS);
+
+        afficherClassement(tournoi.classement);
+    }
+
+    std::cout << '\n'; //delim
+
     /* Faire rivaliser les stratégies 'aléatoire' et 'oeil pour oeil' sur 10 parties */
     /* du dilemne du prisonnier itéré */
     {

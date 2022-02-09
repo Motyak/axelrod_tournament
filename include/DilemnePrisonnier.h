@@ -4,6 +4,7 @@
 #include "duel.h"
 
 #include <vector>
+#include <string>
 
 namespace DilemnePrisonnier
 {
@@ -21,21 +22,37 @@ namespace DilemnePrisonnier
 
 namespace DilemnePrisonnierItere
 {
+    using Strategie = float(*)(const std::vector<DilemnePrisonnier::Coup>&);
+    using Historique = std::vector<DilemnePrisonnier::Coup>;
+
     struct Joueur
     {
-        float (*strategie)(const std::vector<DilemnePrisonnier::Coup>&);
+        Strategie strategie;
+        std::string NOM = "";
         float score = 0.f;
-        std::vector<DilemnePrisonnier::Coup> historique = std::vector<DilemnePrisonnier::Coup>();
+        Historique historique = Historique();
+        
     };
 
     DilemnePrisonnier::Coup faireJouer(const Joueur&);
     void faireAffronter(Joueur&, Joueur&);
 
+    struct Tournoi
+    {
+        std::vector<Joueur> joueurs;
+        // Avec noms des joueurs
+        std::vector<std::string> classement;
+    };
+    Tournoi creerTournoi(std::map<std::string,Strategie> joueurs);
+    void jouer(Tournoi&, int nbDeRounds);
+    static void faireClassement(Tournoi&);
+    void afficherClassement(const std::vector<std::string>&);
+
     /* strategies */
-    float coopereToujours(const std::vector<DilemnePrisonnier::Coup>& historique);
-    float trahitToujours(const std::vector<DilemnePrisonnier::Coup>& historique);
-    float oeilPourOeil(const std::vector<DilemnePrisonnier::Coup>& historique);
-    float aleatoire(const std::vector<DilemnePrisonnier::Coup>& historique);
+    float coopereToujours(const Historique&);
+    float trahitToujours(const Historique&);
+    float oeilPourOeil(const Historique&);
+    float aleatoire(const Historique&);
 };
 
 #endif
