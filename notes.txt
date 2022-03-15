@@ -1,16 +1,4 @@
-void DilemnePrisonnierItere::jouer(Tournoi& tournoi, int nbDeRounds)
-{
-    // iterer dans les values des map
-    auto premierJoueur = tournoi.joueurs.begin();
-    auto dernierJoueur = tournoi.joueurs.end();
-    for(int i = 1; i <= nbDeRounds; ++i)
-        for(auto j1 = premierJoueur; dernierJoueur != j1++;)
-            for(auto j2 = j1; dernierJoueur != ++j2;)
-                // on veut seulement le Joueur, pas le string
-                faireAffronter((*j1).second, (*j2).second);
-}
-
-Du coup on pourrait foutre le nom dans le joueur et mettre
-une chaîne vide par défaut, 
-comme ça on fait juste 'faireAffronter(*j1, *j2)' et du coup
-à la place d'une map on aurait un vector.
+Faire en sorte que lorsqu'on ne met pas de nb de rounds dans la
+fonction 'jouer' => ça fait un tournoi où à chaque tour on élimine
+ceux qui ont le plus bas score, jusqu'à ce qu'il ne reste plus qu'une
+stratégie.

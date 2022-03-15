@@ -101,3 +101,22 @@ float DilemnePrisonnierItere::aleatoire(const Historique& historique)
 {
     return 0.5f;
 }
+
+float DilemnePrisonnierItere::rancunier(const Historique& historique)
+{
+    if(historique.empty())
+        return 1.f;
+    for(const auto& coup: historique)
+        if(coup == DilemnePrisonnier::Coup::TRAHIT)
+            return 0.f;
+    return 1.f;
+}
+
+float DilemnePrisonnierItere::oeilPourOeilGenereux(const Historique& historique)
+{
+    if(historique.size() < 2)
+        return 1.f;
+    if(historique.back() == DilemnePrisonnier::Coup::TRAHIT 
+    && historique.at(historique.size()-2) == DilemnePrisonnier::Coup::TRAHIT)
+        return 0.f;
+}

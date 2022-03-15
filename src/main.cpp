@@ -16,7 +16,9 @@ int main()
             {"ALL_C", &coopereToujours},
             {"ALL_D", &trahitToujours},
             {"E4E", &oeilPourOeil},
-            {"RAND", &aleatoire}
+            {"RAND", &aleatoire},
+            {"WSLS", &rancunier},
+            {"GEN_E4E", &oeilPourOeilGenereux}
         });
 
         jouer(tournoi, NB_DE_ROUNDS);

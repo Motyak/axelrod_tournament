@@ -59,6 +59,8 @@ namespace DilemnePrisonnierItere
     float trahitToujours(const Historique&);
     float oeilPourOeil(const Historique&);
     float aleatoire(const Historique&);
+    float rancunier(const Historique&);
+    float oeilPourOeilGenereux(const Historique&);
 };
 
 #endif
