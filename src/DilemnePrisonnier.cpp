@@ -119,4 +119,5 @@ float DilemnePrisonnierItere::oeilPourOeilGenereux(const Historique& historique)
     if(historique.back() == DilemnePrisonnier::Coup::TRAHIT 
     && historique.at(historique.size()-2) == DilemnePrisonnier::Coup::TRAHIT)
         return 0.f;
+    return 1.f;
 }
